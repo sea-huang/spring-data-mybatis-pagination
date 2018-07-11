@@ -39,6 +39,9 @@ public class SpringDataPageHelper {
 		return LOCAL_COUNT.get();
 	}
 	
+	/**
+	 * clear the pagination settings
+	 */
 	public static void clear(){
 		LOCAL_PAGEABLE.remove();
 		LOCAL_COUNT.remove();
