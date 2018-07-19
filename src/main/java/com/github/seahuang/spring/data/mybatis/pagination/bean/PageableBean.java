@@ -6,7 +6,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-
+/**
+ * Bean style Pageable implementation which is more compatible for RPC serialization.
+ * Doc: {@link <a href="https://github.com/sea-huang/spring-data-mybatis-pagination">https://github.com/sea-huang/spring-data-mybatis-pagination</a>}
+ * @author 黄海
+ * @since 1.0
+ */
 public class PageableBean implements Pageable, Serializable {
 	private static final long serialVersionUID = 6604702276378939342L;
 	private int page;
@@ -170,4 +175,13 @@ public class PageableBean implements Pageable, Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("PageableBean [page=").append(page).append(", size=").append(size).append(", sort=").append(sort)
+				.append("]");
+		return builder.toString();
+	}
+	
 }

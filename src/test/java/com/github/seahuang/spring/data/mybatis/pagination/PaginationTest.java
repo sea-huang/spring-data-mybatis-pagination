@@ -2,6 +2,7 @@ package com.github.seahuang.spring.data.mybatis.pagination;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Sort.NullHandling;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.github.seahuang.spring.data.mybatis.pagination.adapter.ListPageImpl;
 import com.github.seahuang.spring.data.mybatis.pagination.entity.User;
 import com.github.seahuang.spring.data.mybatis.pagination.mapper.UserMapper;
 
@@ -56,6 +58,17 @@ public class PaginationTest {
 				, new Order(Direction.DESC, "mobile", NullHandling.NULLS_LAST).ignoreCase());
 		Page<User> users = userMapper.selectInProvider(new PageRequest(0, 4, sort));
 		System.out.println(users);
+	}
+	
+	@Test
+	public void testFindUserByNamePageable(){
+		SpringDataPageHelper.paginateNextCall(new PageRequest(0,4));
+		List<User> users = userMapper.findUserByName("a");
+		Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.ListPageImpl.class, users.getClass());
+		
+		SpringDataPageHelper.paginateNextCall(new PageRequest(0,4), false);
+		users = userMapper.findUserByName("a");
+		Assert.assertEquals(com.github.pagehelper.Page.class, users.getClass());
 	}
 
 }

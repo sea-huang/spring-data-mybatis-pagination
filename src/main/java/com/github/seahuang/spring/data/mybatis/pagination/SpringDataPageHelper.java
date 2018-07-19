@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
  * A non-invasive way to paginate next mybatis call.
  * It is scored in ThreadLocal, will be cleared after calling.
  * Be careful in case unexpected call to be impacted.
+ * Doc: {@link <a href="https://github.com/sea-huang/spring-data-mybatis-pagination">https://github.com/sea-huang/spring-data-mybatis-pagination</a>}
  * @author 黄海
  * @since 1.0
  */

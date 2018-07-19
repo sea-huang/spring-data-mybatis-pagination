@@ -265,5 +265,13 @@ public class OrderBean extends Sort.Order {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("OrderBean [direction=").append(direction).append(", property=").append(property)
+				.append(", ignoreCase=").append(ignoreCase).append(", nullHandling=").append(nullHandling).append("]");
+		return builder.toString();
+	}
 	
 }
