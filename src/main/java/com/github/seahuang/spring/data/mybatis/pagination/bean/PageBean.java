@@ -11,12 +11,22 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.Assert;
 
+/**
+ * Bean style Page implementation which is more compatible for RPC serialization.
+ * Doc: {@link <a href="https://github.com/sea-huang/spring-data-mybatis-pagination">https://github.com/sea-huang/spring-data-mybatis-pagination</a>}
+ * @author 黄海
+ * @since 1.0
+ */
 public class PageBean<T> implements Page<T> {
 	private List<T> content = new ArrayList<T>();
 	private PageableBean pageable;
 	private long total;
 	
 	protected PageBean(){}
+	
+	public static <T> PageBean<T> from(Page<T> source){
+		return new PageBean<T>(source.getContent(), source.nextPageable().previousOrFirst(), source.getTotalElements());
+	}
 	/**
 	 * Constructor of {@code PageImpl}.
 	 * 

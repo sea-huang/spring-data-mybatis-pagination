@@ -13,10 +13,6 @@ import com.github.seahuang.spring.data.mybatis.pagination.mvc.MoreSortHandlerMet
 @SpringBootApplication
 public class TestApplication extends WebMvcConfigurerAdapter {
 	
-	public static void main(String[] args){
-		SpringApplication.run(TestApplication.class, args);
-	}
-	
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         super.addArgumentResolvers(argumentResolvers);
@@ -24,4 +20,8 @@ public class TestApplication extends WebMvcConfigurerAdapter {
         argumentResolvers.add(sortResolver);
         argumentResolvers.add(new PageableHandlerMethodArgumentResolver(sortResolver));
     }
+    
+	public static void main(String[] args){
+		SpringApplication.run(TestApplication.class, args);
+	}
 }

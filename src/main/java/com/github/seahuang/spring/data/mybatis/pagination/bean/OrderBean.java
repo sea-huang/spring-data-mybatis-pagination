@@ -6,6 +6,12 @@ import org.springframework.data.domain.Sort.NullHandling;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.util.StringUtils;
 
+/**
+ * Bean style Order implementation which is more compatible for RPC serialization.
+ * Doc: {@link <a href="https://github.com/sea-huang/spring-data-mybatis-pagination">https://github.com/sea-huang/spring-data-mybatis-pagination</a>}
+ * @author 黄海
+ * @since 1.0
+ */
 public class OrderBean extends Sort.Order {
 	private static final long serialVersionUID = -313397537699999994L;
 
