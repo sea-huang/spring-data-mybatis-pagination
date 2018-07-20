@@ -37,7 +37,7 @@ public class SpringDataPageHelper {
 	}
 	
 	public static boolean getCount(){
-		return LOCAL_COUNT.get();
+		return LOCAL_COUNT.get() == null ? false : LOCAL_COUNT.get();
 	}
 	
 	/**

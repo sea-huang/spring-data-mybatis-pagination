@@ -1,4 +1,4 @@
-#### [中文](https://github.com/sea-huang/spring-data-mybatis-pagination/blob/master/README.md)
+#### [中文](https://github.com/sea-huang/spring-data-mybatis-pagination/blob/master/README_CN.md)
 
 # spring-data-mybatis-pagination
 Support <b>Pageable/Page/Sort/Order</b> from <b>spring-data-commons</b> in Mybatis.
@@ -78,7 +78,15 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
   
     <br>
 ### Set up
-- Add maven dependencies:TODO
+- Add maven dependencies: PageHelper is not very stable. we only support 4.2.x
+
+  ```xml
+  <dependency>
+  		<groupId>com.github.sea-huang</groupId>
+  		<artifactId>spring-data-mybatis-pagination</artifactId>
+  		<version>1.0.0</version>
+  </dependency>
+  ```	
 - For spring boot app, if mybatis-spring-boot-starter(min-version 1.2.1) is on classpath. PaginationPlugin is autoconfigured
 - For other cases, PaginationObjectFactory/PaginationPlugin should be manually configured
 

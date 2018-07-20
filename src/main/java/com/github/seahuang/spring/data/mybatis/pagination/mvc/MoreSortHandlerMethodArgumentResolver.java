@@ -134,7 +134,7 @@ public class MoreSortHandlerMethodArgumentResolver extends SortHandlerMethodArgu
 			if(ignoreCase){
 				result = result.ignoreCase();
 			}
-			result.with(nullHandling);
+			result = result.with(nullHandling);
 			return result;
 		}
 		

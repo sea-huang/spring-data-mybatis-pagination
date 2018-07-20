@@ -17,7 +17,6 @@ import org.springframework.data.domain.Sort.NullHandling;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.github.seahuang.spring.data.mybatis.pagination.adapter.ListPageImpl;
 import com.github.seahuang.spring.data.mybatis.pagination.entity.User;
 import com.github.seahuang.spring.data.mybatis.pagination.mapper.UserMapper;
 
