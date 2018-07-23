@@ -22,7 +22,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.util.SqlUtil;
+import com.github.pagehelper.PageInterceptor;
 import com.github.seahuang.spring.data.mybatis.pagination.SpringDataPageHelper;
 import com.github.seahuang.spring.data.mybatis.pagination.sort.DefaultSortDialectRouter;
 import com.github.seahuang.spring.data.mybatis.pagination.sort.SortDialectRouter;
@@ -31,7 +31,7 @@ import com.github.seahuang.spring.data.mybatis.pagination.util.PropertyConventio
 @Intercepts(@Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}))
 public class PaginationPlugin implements Interceptor {
 	private Properties properties;
-	private PageHelper pageHelper = new PageHelper();
+	private PageInterceptor pageInterceptor = new PageInterceptor();
 	private SortDialectRouter sortDialectRouter = new DefaultSortDialectRouter();
 	private boolean sortColumnCamelcaseToUnderscore = false;
 	private boolean disablePageHelper = false;
@@ -48,7 +48,7 @@ public class PaginationPlugin implements Interceptor {
 			if (disablePageHelper) {
 				return invocation.proceed();
 			}
-			return pageHelper.intercept(invocation);
+			return pageInterceptor.intercept(invocation);
 		}
 			
 		try{
@@ -62,7 +62,7 @@ public class PaginationPlugin implements Interceptor {
 				PageHelper.orderBy(orderBy);
 			}
 			
-			com.github.pagehelper.Page pageHelperPage = (com.github.pagehelper.Page)pageHelper.intercept(invocation);
+			com.github.pagehelper.Page pageHelperPage = (com.github.pagehelper.Page)pageInterceptor.intercept(invocation);
 			
 			if(count){
 				return new ListPageImpl(pageHelperPage.getResult(), pageable, pageHelperPage.getTotal());
@@ -71,7 +71,7 @@ public class PaginationPlugin implements Interceptor {
 			}
 		}finally{
 			SpringDataPageHelper.clear();
-			SqlUtil.clearLocalPage();
+			PageHelper.clearPage();
 		}
 	}
 	
@@ -145,11 +145,11 @@ public class PaginationPlugin implements Interceptor {
 	@Override
 	public void setProperties(Properties properties) {
 		this.properties = properties;
-		pageHelper.setProperties(properties);
+		pageInterceptor.setProperties(properties);
 	}
 
-	public void setPageHelper(PageHelper pageHelper) {
-		this.pageHelper = pageHelper;
+	public void setPageInterceptor(PageInterceptor pageInterceptor) {
+		this.pageInterceptor = pageInterceptor;
 	}
 
 	public void setSortDialectRouter(SortDialectRouter sortDialectRouter) {
