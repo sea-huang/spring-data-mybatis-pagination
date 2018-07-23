@@ -78,7 +78,7 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
   
     <br>
 ### Set up
-- Add maven dependencies: PageHelper is not very stable. we only support 4.2.x
+- Add maven dependencies: PageHelper is not very stable. for 4.2.x
 
   ```xml
   <dependency>
@@ -87,6 +87,16 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
   		<version>1.0.0</version>
   </dependency>
   ```	
+- For pagehelper 5.1.x
+
+  ```xml
+  <dependency>
+  		<groupId>com.github.sea-huang</groupId>
+  		<artifactId>spring-data-mybatis-pagination</artifactId>
+  		<version>2.0.0</version>
+  </dependency>
+  ```	
+
 - For spring boot app, if mybatis-spring-boot-starter(min-version 1.2.1) is on classpath. PaginationPlugin is autoconfigured
 - For other cases, PaginationObjectFactory/PaginationPlugin should be manually configured
 
