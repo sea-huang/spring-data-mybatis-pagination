@@ -75,7 +75,7 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
   
     <br>
 ### 设置
-- 添加Maven依赖: PageHelper 不是很稳定. 只支持 4.2.x
+- 添加Maven依赖: PageHelper 不是很稳定. 对于 4.2.x
   ```xml
   <dependency>
   		<groupId>com.github.sea-huang</groupId>
@@ -83,6 +83,17 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
   		<version>1.0.0</version>
   </dependency>
   ```	
+  
+- 对于 pagehelper 5.1.x
+
+  ```xml
+  <dependency>
+  		<groupId>com.github.sea-huang</groupId>
+  		<artifactId>spring-data-mybatis-pagination</artifactId>
+  		<version>2.0.0</version>
+  </dependency>
+  ```	
+  
 - 对 spring boot 应用, 如果 mybatis-spring-boot-starter(最小支持版本 1.2.1) 在类路径上. PaginationPlugin 会自动装配
 - 对其他情况, PaginationObjectFactory/PaginationPlugin 需要手动配置
   ```
