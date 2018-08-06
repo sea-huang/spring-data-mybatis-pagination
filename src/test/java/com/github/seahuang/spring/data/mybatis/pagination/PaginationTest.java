@@ -69,5 +69,12 @@ public class PaginationTest {
 		users = userMapper.findUserByName("a");
 		Assert.assertEquals(com.github.pagehelper.Page.class, users.getClass());
 	}
+	
+	@Test
+	public void testCamelCase(){
+		Sort sort = new Sort(new Order(Direction.DESC, "camelCase", NullHandling.NULLS_LAST).ignoreCase());
+		Page<User> users = userMapper.findPage(new PageRequest(0, 4, sort));
+		System.out.println(users);
+	}
 
 }

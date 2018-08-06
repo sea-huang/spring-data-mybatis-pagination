@@ -33,8 +33,8 @@ public class PaginationPlugin implements Interceptor {
 	private Properties properties;
 	private PageHelper pageHelper = new PageHelper();
 	private SortDialectRouter sortDialectRouter = new DefaultSortDialectRouter();
-	private boolean sortColumnCamelcaseToUnderscore = false;
-	private boolean disablePageHelper = false;
+	private Boolean sortColumnCamelcaseToUnderscore = false;
+	private Boolean disablePageHelper = false;
 	
 	public PaginationPlugin(){
 		this.setProperties(new Properties());
@@ -145,6 +145,10 @@ public class PaginationPlugin implements Interceptor {
 	@Override
 	public void setProperties(Properties properties) {
 		this.properties = properties;
+		this.sortColumnCamelcaseToUnderscore = Boolean.valueOf(properties.getProperty(
+			"sortColumnCamelcaseToUnderscore", sortColumnCamelcaseToUnderscore.toString()));
+		this.disablePageHelper = Boolean.valueOf(properties.getProperty(
+				"disablePageHelper", disablePageHelper.toString()));
 		pageHelper.setProperties(properties);
 	}
 
@@ -160,4 +164,11 @@ public class PaginationPlugin implements Interceptor {
 		this.sortColumnCamelcaseToUnderscore = sortColumnCamelcaseToUnderscore;
 	}
 
+	public boolean isDisablePageHelper() {
+		return disablePageHelper;
+	}
+
+	public void setDisablePageHelper(boolean disablePageHelper) {
+		this.disablePageHelper = disablePageHelper;
+	}
 }

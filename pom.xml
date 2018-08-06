@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.sea-huang</groupId>
   <artifactId>spring-data-mybatis-pagination</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   	<name>spring-data-mybatis-pagination</name>
 	<description>Mybatis implementation for pagination interfaces in spring-data-common</description>
 	<url>https://github.com/sea-huang/spring-data-mybatis-pagination</url>
