@@ -51,8 +51,9 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
 - Default Page/Pageable/Sort/Order implementation in spring-data don't support deserialization in RPC call very well. We offer a bean style version
   
   <pre>
-  <b>PageableBean</b> pageable = <b>PageableBean</b>.from(new PageRequest(0,4,sort));
-  <b>PageBean&ltT&gt</b> page = <b>PageBean&ltT&gt</b>.from(new PageImpl<T>());
+  Pageable pageable = new PageRequest(0,4,sort);
+  <b>PageableBean</b> pageable = <b>PageableBean</b>.from(pageable);
+  <b>PageBean&ltT&gt</b> page = <b>PageBean&ltT&gt</b>.from(new PageImpl<T>(), pageable);
   </pre>
   
 - Official mvc feature don't support "ignore case" or "null handling"
@@ -84,7 +85,7 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
   <dependency>
   		<groupId>com.github.sea-huang</groupId>
   		<artifactId>spring-data-mybatis-pagination</artifactId>
-  		<version>1.0.0</version>
+  		<version>1.1.1</version>
   </dependency>
   ```	
 - For pagehelper 5.1.x

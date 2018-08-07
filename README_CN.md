@@ -48,8 +48,9 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
 - spring-data默认的 Page/Pageable/Sort/Order 实现在RPC中反序列化支持不好，我们提供了一个bean的实现版本，来提供更好的序列化。
   
   <pre>
-  <b>PageableBean</b> pageable = <b>PageableBean</b>.from(new PageRequest(0,4,sort));
-  <b>PageBean&ltT&gt</b> page = <b>PageBean&ltT&gt</b>.from(new PageImpl<T>());
+  Pageable pageable = new PageRequest(0,4,sort);
+  <b>PageableBean</b> pageable = <b>PageableBean</b>.from(pageable);
+  <b>PageBean&ltT&gt</b> page = <b>PageBean&ltT&gt</b>.from(new PageImpl<T>(), pageable);
   </pre>
   
 - Spring 官方 mvc 特性不支持 "ignore case" 或 "null handling"
@@ -80,7 +81,7 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
   <dependency>
   		<groupId>com.github.sea-huang</groupId>
   		<artifactId>spring-data-mybatis-pagination</artifactId>
-  		<version>1.0.0</version>
+  		<version>1.1.1</version>
   </dependency>
   ```	
   
