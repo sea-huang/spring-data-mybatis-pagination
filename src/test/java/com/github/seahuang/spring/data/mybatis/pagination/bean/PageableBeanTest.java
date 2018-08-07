@@ -20,4 +20,12 @@ public class PageableBeanTest {
 		PageableBean copy = JSON.parseObject(json, PageableBean.class);
 		Assert.assertEquals(pageable, copy);
 	}
+	
+	@Test
+	public void testSerializable2(){
+		PageableBean pageable = PageableBean.from(new PageRequest(0,4));
+		String json = JSON.toJSONString(pageable);
+		PageableBean copy = JSON.parseObject(json, PageableBean.class);
+		Assert.assertEquals(pageable, copy);
+	}
 }

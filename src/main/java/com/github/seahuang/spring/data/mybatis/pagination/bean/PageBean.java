@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,8 +25,8 @@ public class PageBean<T> implements Page<T> {
 	
 	protected PageBean(){}
 	
-	public static <T> PageBean<T> from(Page<T> source){
-		return new PageBean<T>(source.getContent(), source.nextPageable().previousOrFirst(), source.getTotalElements());
+	public static <T> PageBean<T> from(Page<T> source, Pageable pageable){
+		return new PageBean<T>(source.getContent(), pageable, source.getTotalElements());
 	}
 	/**
 	 * Constructor of {@code PageImpl}.

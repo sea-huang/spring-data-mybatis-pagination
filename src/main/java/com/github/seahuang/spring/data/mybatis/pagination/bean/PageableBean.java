@@ -56,7 +56,9 @@ public class PageableBean implements Pageable, Serializable {
 	public PageableBean(int page, int size, Sort sort) {
 		this.page = page;
 		this.size = size;
-		this.sort = SortBean.from(sort);
+		if(sort != null){
+			this.sort = SortBean.from(sort);
+		}
 	}
 
 	/* 
