@@ -1,5 +1,6 @@
 package com.github.seahuang.spring.data.mybatis.pagination.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -18,7 +19,8 @@ import org.springframework.util.Assert;
  * @author 黄海
  * @since 1.0
  */
-public class PageBean<T> implements Page<T> {
+public class PageBean<T> implements Page<T>, Serializable {
+	private static final long serialVersionUID = -4969861122766495395L;
 	private List<T> content = new ArrayList<T>();
 	private PageableBean pageable;
 	private long total;
