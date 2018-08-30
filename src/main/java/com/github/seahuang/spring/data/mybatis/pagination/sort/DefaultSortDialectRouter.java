@@ -1,5 +1,6 @@
 package com.github.seahuang.spring.data.mybatis.pagination.sort;
 
+import java.sql.Connection;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -17,18 +18,28 @@ public class DefaultSortDialectRouter implements SortDialectRouter {
 	
 	@Override
 	public SortDialect routeSortDialect(Properties properties, Invocation invocation) {
+		String dialect = properties.getProperty("dialect");
+		if(dialect != null){
+			return routeByKeyWord(dialect);
+		}
+		Connection connection = null;
 		try {
-			String dialect = properties.getProperty("dialect");
-			if(dialect != null){
-				return routeByKeyWord(dialect);
-			}
 			MappedStatement mappedStatement = (MappedStatement)invocation.getArgs()[0];
 			DataSource dataSource = mappedStatement.getConfiguration().getEnvironment().getDataSource();
-			String url = dataSource.getConnection().getMetaData().getURL();
+			connection = dataSource.getConnection();
+			String url = connection.getMetaData().getURL();
 			return routeByKeyWord(url);
 		} catch(Exception e) {
 			logger.warn("Fail to route SortDialect, use ANSISortDialect", e);
 			return standardDialect;
+		} finally{
+			if(connection != null){
+				try{
+					connection.close();
+				}catch(Exception e){
+					logger.warn("Fail to close connection", e);
+				}
+			}
 		}
 	}
 	
