@@ -91,7 +91,7 @@ Assert.assertEquals(com.github.seahuang.spring.data.mybatis.pagination.adapter.<
   <dependency>
   		<groupId>com.github.sea-huang</groupId>
   		<artifactId>spring-data-mybatis-pagination</artifactId>
-  		<version>2.0.0</version>
+  		<version>2.1.2</version>
   </dependency>
   ```	
   
